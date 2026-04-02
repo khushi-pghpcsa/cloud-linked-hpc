@@ -90,3 +90,7 @@ The architecture is designed to be scalable and can be extended to support large
 
 Conclusion
 Cloud Linked HPC represents a production-oriented approach to deploying high-performance computing infrastructure on the cloud. By combining high availability, distributed storage, workload management, and monitoring within a secure AWS environment, the project reflects real-world HPC system design principles.
+
+# cloud-linked-hpc
+An HPC architecture integrated with cloud infrastructure to deliver high availability, parallel computation, and real-time performance monitoring.
+
