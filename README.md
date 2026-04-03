@@ -1,96 +1,86 @@
 Cloud Linked HPC – High Performance Computing Cluster on AWS
 
-Overview
-Cloud Linked HPC is a cloud-based High Performance Computing (HPC) cluster deployed on AWS using Ubuntu 22.04.5 LTS. The project focuses on designing and implementing a secure, scalable, and highly available HPC infrastructure by integrating workload management, distributed storage, centralized authentication, and monitoring systems.
+Project Overview
 
-The primary objective is to simulate an enterprise-grade HPC environment with proper network segmentation, failover mechanisms, and automation practices.
+Cloud Linked HPC is a cloud based High Performance Computing cluster deployed on AWS using Ubuntu 22.04.5 LTS.
 
+The project demonstrates the design and implementation of a secure, scalable and highly available HPC infrastructure integrating workload management, distributed storage, centralized authentication and monitoring systems.
 
-System Architecture
-The infrastructure is deployed within an AWS Virtual Private Cloud (VPC) and is divided into two logical network segments to ensure security and operational efficiency.
+The objective of this project is to simulate an enterprise level HPC environment with proper network segmentation, failover mechanisms and automation.
+
+Architecture Overview
+
+The infrastructure is deployed inside an AWS Virtual Private Cloud and divided into two logical segments.
 
 Public Subnet
-The public subnet hosts externally accessible services and management components:
 
-- Login Node for user access
-- LDAP Server for centralized authentication
-- ELK Stack for log management and analysis
-- Zabbix Server for infrastructure monitoring
+Login Node  
+LDAP Server for centralized authentication  
+ELK Stack for log management and analysis  
+Zabbix for infrastructure monitoring  
 
 Private Subnet
-The private subnet contains internal HPC components isolated from direct internet access:
 
-- Controller Nodes configured with SLURM and PCS
-- Compute Nodes for parallel workload execution
-- BeeGFS Storage Node for distributed file system operations
+Controller Node 1 with SLURM and PCS  
+Controller Node 2 with SLURM and PCS  
+Compute Nodes for workload execution  
+BeeGFS Storage Node for distributed file system  
 
-This segmentation ensures secure communication and restricts exposure of critical components.
+Private subnet components are isolated from direct internet access to ensure secure internal communication.
 
-
-Core Components
+Core Components Configured
 
 High Availability
-The controller nodes are configured in a high-availability setup using Pacemaker, PCS, and Corosync. This enables automatic failover and ensures uninterrupted cluster operations in case of node failure.
+
+Pacemaker version 2.1.2  
+PCS version 0.10.11  
+Corosync version 3.1.6  
+
+Controller nodes are configured in high availability mode with automatic failover capability.
 
 Workload Management
-SLURM is used as the workload manager to handle job scheduling, resource allocation, node management, and partition configuration. It enables efficient execution of parallel workloads across compute nodes.
+
+SLURM Workload Manager is used for job scheduling, resource allocation, node management and partition configuration.
 
 Distributed Storage
-BeeGFS is implemented as a parallel distributed file system, providing high throughput and concurrent read/write capabilities. It allows all compute nodes to access shared storage efficiently.
+
+BeeGFS version 8.2.2 is configured as a parallel distributed file system providing shared storage access, high throughput and concurrent read and write operations across compute nodes.
 
 Centralized Authentication
-LDAP is used to manage centralized authentication, ensuring consistent user access control across all nodes in the cluster.
+
+LDAP server is implemented to provide centralized user authentication and consistent access control across the cluster.
 
 Monitoring and Logging
-The system integrates ELK Stack and Zabbix for comprehensive monitoring and logging:
 
-- ELK Stack handles log aggregation, processing, and visualization
-- Zabbix monitors system performance and infrastructure health
+ELK Stack consisting of Elasticsearch, Logstash and Kibana is used for log collection, processing and visualization.
 
-A Python-based monitoring script is used to validate key system parameters, including SLURM services, BeeGFS services, disk utilization, and node health status.
+Zabbix monitoring server is used to track infrastructure health including CPU usage, memory utilization, disk activity and node availability.
 
+A Python based monitoring script is implemented to validate SLURM services, BeeGFS services, disk usage and overall node health.
 
 Automation
-The infrastructure setup is automated using shell scripts to ensure reproducibility and consistency. Automation covers:
 
-- Login node configuration
-- Controller node setup
-- SLURM installation and configuration
-- Compute node provisioning
-- BeeGFS deployment
+Shell based automation scripts are developed to deploy and configure all components of the cluster.
 
-This approach reduces manual intervention and minimizes configuration errors.
+Automation includes login node setup, controller configuration, SLURM installation, compute node provisioning and BeeGFS deployment.
 
+This approach ensures reproducibility, consistency and reduced manual intervention.
 
 Repository Structure
-The repository is organized to reflect a modular and maintainable design:
 
-- architecture/ contains system and network design artifacts
-- automation/ includes shell scripts for deployment and setup
-- configs/ stores configuration files for services such as SLURM, Corosync, BeeGFS, ELK, and LDAP
-- monitoring/ includes Python scripts for system health checks
-- screenshots/ contains validation outputs and dashboards
-- docs/ provides detailed setup and configuration documentation
+architecture contains system design and architecture diagrams  
+configs contains configuration files for SLURM, Corosync, BeeGFS, ELK and LDAP  
+scripts contains automation scripts for deployment  
+monitoring contains Python based health check scripts  
+screenshots contains validation outputs and dashboards  
+docs contains detailed setup and configuration documentation  
 
+Scope of the Project
 
+This project demonstrates deployment of an HPC cluster in a cloud environment, implementation of high availability for controller nodes, integration of distributed storage, secure network segmentation, centralized authentication, monitoring and logging integration and infrastructure automation.
 
-Scope
-This project demonstrates the deployment of an HPC cluster in a cloud environment with a focus on:
-
-- High availability configuration
-- Parallel workload execution
-- Distributed storage integration
-- Secure network segmentation
-- Centralized authentication
-- Monitoring and logging integration
-- Infrastructure automation
-
-The architecture is designed to be scalable and can be extended to support larger workloads and advanced research applications.
-
+The architecture is designed to be scalable and can be extended to support larger workloads and advanced computing use cases.
 
 Conclusion
-Cloud Linked HPC represents a production-oriented approach to deploying high-performance computing infrastructure on the cloud. By combining high availability, distributed storage, workload management, and monitoring within a secure AWS environment, the project reflects real-world HPC system design principles.
 
-# cloud-linked-hpc
-An HPC architecture integrated with cloud infrastructure to deliver high availability, parallel computation, and real-time performance monitoring.
-
+Cloud Linked HPC represents a production oriented HPC deployment model combining high availability, distributed storage, workload management and centralized monitoring within a secure AWS based infrastructure.
